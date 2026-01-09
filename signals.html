@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2196F3">
+    <title>Signals - Trading Signals Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chart-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="menu-icon" onclick="location.href='chart.html'">←</div>
+                <h2 style="margin: 0;">Signals</h2>
+            </div>
+            <div class="header-icons">
+                <button class="icon-btn" id="refreshSignals" title="Refresh">🔄</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div style="flex: 1; overflow-y: auto; padding-bottom: 70px;">
+            <div class="signals-container">
+                <div class="signals-header">
+                    <h1>Trading Signals</h1>
+                    <button class="btn-generate" id="generateSignalBtn">
+                        <span id="generateText">Generate Signal</span>
+                        <span id="generateSpinner" class="loading" style="display: none;"></span>
+                    </button>
+                </div>
+
+                <div class="signals-actions" id="signalsActions" style="display: none;">
+                    <button class="btn-track" id="trackSelectedBtn">Track Selected</button>
+                    <button class="btn-delete" id="deleteSelectedBtn">Delete Selected</button>
+                </div>
+
+                <div id="signalsGrid" class="signals-grid">
+                    <!-- Signals will be populated here -->
+                </div>
+
+                <div id="noSignals" style="text-align: center; padding: 50px 20px; color: var(--text-gray);">
+                    <div style="font-size: 48px; margin-bottom: 20px;">📊</div>
+                    <h3>No Signals Yet</h3>
+                    <p>Generate your first signal to get started</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="chart.html" class="nav-item">
+                <div class="nav-icon">📈</div>
+                <div>Charts</div>
+            </a>
+            <a href="signals.html" class="nav-item active">
+                <div class="nav-icon">⚡</div>
+                <div>Signals</div>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <div class="nav-icon">⚙️</div>
+                <div>Settings</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Generate Signal Modal -->
+    <div id="generateModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Generate Signal</h2>
+                <button class="close-btn" id="closeGenerateModal">✕</button>
+            </div>
+            <div class="symbol-list">
+                <div class="symbol-item" data-symbol="XAUUSD">XAUUSD (Gold)</div>
+                <div class="symbol-item" data-symbol="EURUSD">EURUSD</div>
+                <div class="symbol-item" data-symbol="GBPUSD">GBPUSD</div>
+                <div class="symbol-item" data-symbol="AUDUSD">AUDUSD</div>
+                <div class="symbol-item" data-symbol="AUDCAD">AUDCAD</div>
+                <div class="symbol-item" data-symbol="USDCAD">USDCAD</div>
+                <div class="symbol-item" data-symbol="USDJPY">USDJPY</div>
+                <div class="symbol-item" data-symbol="GBPJPY">GBPJPY</div>
+                <div class="symbol-item" data-symbol="CADJPY">CADJPY</div>
+                <div class="symbol-item" data-symbol="AUDJPY">AUDJPY</div>
+                <div class="symbol-item" data-symbol="BTCUSD">BTCUSD</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="signals.js"></script>
+    <script type="module" src="tracker.js"></script>
+</body>
+</html>

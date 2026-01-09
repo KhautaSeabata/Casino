@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Trading Signals Application">
+    <meta name="theme-color" content="#2196F3">
+    <title>Login - Trading Signals Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon-192.png">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>📈 Trading Signals Pro</h1>
+            
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            <div id="successMessage" class="success-message" style="display: none;"></div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <span id="loginText">Login</span>
+                    <span id="loginSpinner" class="loading" style="display: none;"></span>
+                </button>
+            </form>
+            
+            <a href="forgot-password.html" class="link">Forgot Password?</a>
+            
+            <button onclick="location.href='register.html'" class="btn btn-secondary">
+                Create Account
+            </button>
+        </div>
+    </div>
+
+    <!-- Install Prompt -->
+    <div id="installPrompt" class="install-prompt">
+        <span>📱 Install app for better experience</span>
+        <button id="installBtn">Install</button>
+        <button class="close-install" id="closeInstall">✕</button>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+    <script>
+        // PWA Installation
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+        const installBtn = document.getElementById('installBtn');
+        const closeInstall = document.getElementById('closeInstall');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install prompt only if not shown before
+            const hasShownInstall = localStorage.getItem('installPromptShown');
+            if (!hasShownInstall) {
+                setTimeout(() => {
+                    installPrompt.classList.add('show');
+                }, 2000);
+            }
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installPrompt.classList.remove('show');
+                localStorage.setItem('installPromptShown', 'true');
+            }
+        });
+
+        closeInstall.addEventListener('click', () => {
+            installPrompt.classList.remove('show');
+            localStorage.setItem('installPromptShown', 'true');
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed'));
+        }
+    </script>
+</body>
+</html>

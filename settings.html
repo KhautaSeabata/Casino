@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2196F3">
+    <title>Settings - Trading Signals Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chart-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="menu-icon" onclick="location.href='chart.html'">←</div>
+                <h2 style="margin: 0;">Settings</h2>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div style="flex: 1; overflow-y: auto; padding-bottom: 70px;">
+            <div class="settings-container">
+                <!-- SMC Concepts -->
+                <div class="settings-section">
+                    <h2>📊 SMC Strategy Concepts</h2>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Order Blocks</div>
+                            <div class="setting-description">Identify institutional buying/selling zones</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="orderBlocks">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Fair Value Gaps (FVG)</div>
+                            <div class="setting-description">Detect imbalance zones in price action</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="fvg">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Break of Structure (BOS)</div>
+                            <div class="setting-description">Identify trend continuation signals</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="bos">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Change of Character (CHoCH)</div>
+                            <div class="setting-description">Detect potential trend reversals</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="choch">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Liquidity Zones</div>
+                            <div class="setting-description">Identify sweep and grab zones</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="liquidity">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Market Structure</div>
+                            <div class="setting-description">Analyze higher highs and lower lows</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="marketStructure">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Analysis -->
+                <div class="settings-section">
+                    <h2>📰 News Analysis</h2>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Enable News Analysis</div>
+                            <div class="setting-description">Use fundamental analysis from news sources</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="newsAnalysis">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Currency Strength Analysis</div>
+                            <div class="setting-description">Analyze relative currency strength</div>
+                        </div>
+                        <div class="toggle-switch active" data-setting="currencyStrength">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto Generation -->
+                <div class="settings-section">
+                    <h2>⚡ Auto Generation</h2>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Auto Generate Signals</div>
+                            <div class="setting-description">Generate signals every 5 minutes</div>
+                        </div>
+                        <div class="toggle-switch" data-setting="autoGenerate">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account -->
+                <div class="settings-section">
+                    <h2>👤 Account</h2>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Email</div>
+                            <div class="setting-description" id="userEmail">Loading...</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="logoutBtn" style="margin-top: 15px;">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Documentation -->
+                <div class="settings-section">
+                    <h2>📚 Documentation</h2>
+                    
+                    <div class="notes-section">
+                        <h3>About This App</h3>
+                        <p>Trading Signals Pro uses Smart Money Concepts (SMC) combined with news analysis and trendline analysis to generate high-probability trading signals.</p>
+                        
+                        <h3>SMC Concepts Explained</h3>
+                        <ul>
+                            <li><strong>Order Blocks:</strong> Areas where institutions placed large orders. Price often returns to these zones before continuing in the same direction.</li>
+                            
+                            <li><strong>Fair Value Gaps (FVG):</strong> Imbalances in price action shown by gaps between candles. These gaps often get filled as price returns to fair value.</li>
+                            
+                            <li><strong>Break of Structure (BOS):</strong> When price breaks a significant high/low, indicating trend continuation.</li>
+                            
+                            <li><strong>Change of Character (CHoCH):</strong> When price behavior changes, potentially signaling a trend reversal.</li>
+                            
+                            <li><strong>Liquidity Zones:</strong> Areas where stop losses cluster. Institutions often "sweep" these zones before reversing.</li>
+                            
+                            <li><strong>Market Structure:</strong> The pattern of higher highs/lows (uptrend) or lower highs/lows (downtrend).</li>
+                        </ul>
+                        
+                        <h3>Understanding Confidence Levels</h3>
+                        <p><strong>70-100%:</strong> High probability setup with multiple confirmations</p>
+                        <p><strong>50-69%:</strong> Moderate probability setup with some confirmations</p>
+                        <p><strong>Below 50%:</strong> Low probability setup, trade with caution</p>
+                        
+                        <h3>News Analysis</h3>
+                        <p>The app analyzes recent news to determine currency strength and volatility. Stronger currencies tend to appreciate against weaker ones.</p>
+                        
+                        <h3>Risk Management</h3>
+                        <p>All signals include Stop Loss (SL) and Take Profit (TP) levels based on market structure. The tracker automatically monitors your active signals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="chart.html" class="nav-item">
+                <div class="nav-icon">📈</div>
+                <div>Charts</div>
+            </a>
+            <a href="signals.html" class="nav-item">
+                <div class="nav-icon">⚡</div>
+                <div>Signals</div>
+            </a>
+            <a href="settings.html" class="nav-item active">
+                <div class="nav-icon">⚙️</div>
+                <div>Settings</div>
+            </a>
+        </div>
+    </div>
+
+    <script type="module" src="settings.js"></script>
+</body>
+</html>

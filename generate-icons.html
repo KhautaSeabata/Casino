@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            background: #1a1a1a;
+            color: white;
+        }
+        canvas {
+            border: 2px solid #2196F3;
+            margin: 20px;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        h1 {
+            color: #2196F3;
+        }
+        .instructions {
+            max-width: 600px;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📈 Trading App Icon Generator</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click "Generate Icons" below</li>
+            <li>Right-click each canvas and "Save image as..."</li>
+            <li>Save as "icon-192.png" and "icon-512.png"</li>
+            <li>Place files in your app's root directory</li>
+            <li>Redeploy to Vercel</li>
+        </ol>
+    </div>
+
+    <button onclick="generateIcons()">Generate Icons</button>
+
+    <div id="icons"></div>
+
+    <script>
+        function generateIcons() {
+            const container = document.getElementById('icons');
+            container.innerHTML = '';
+
+            // Generate 192x192 icon
+            createIcon(192, container);
+            
+            // Generate 512x512 icon
+            createIcon(512, container);
+        }
+
+        function createIcon(size, container) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#2196F3');
+            gradient.addColorStop(1, '#1976D2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+
+            // Draw candlestick chart symbol
+            ctx.strokeStyle = 'white';
+            ctx.fillStyle = 'white';
+            ctx.lineWidth = size * 0.02;
+
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const chartWidth = size * 0.6;
+            const chartHeight = size * 0.5;
+            const candleWidth = chartWidth / 5;
+
+            // Draw 3 candlesticks
+            for (let i = 0; i < 3; i++) {
+                const x = centerX - chartWidth/2 + (i + 0.5) * (chartWidth / 3);
+                const isGreen = i % 2 === 0;
+                
+                // Wick
+                ctx.beginPath();
+                ctx.moveTo(x, centerY - chartHeight/2 + Math.random() * chartHeight/4);
+                ctx.lineTo(x, centerY + chartHeight/2 - Math.random() * chartHeight/4);
+                ctx.stroke();
+
+                // Body
+                const bodyHeight = chartHeight * (0.2 + Math.random() * 0.3);
+                const bodyY = centerY - (isGreen ? bodyHeight/2 : -bodyHeight/4);
+                
+                ctx.fillStyle = isGreen ? '#00ff00' : '#ff0000';
+                ctx.fillRect(x - candleWidth/3, bodyY, candleWidth * 0.66, bodyHeight);
+            }
+
+            // Draw upward arrow
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            const arrowX = centerX + chartWidth/3;
+            const arrowY = centerY - chartHeight/3;
+            const arrowSize = size * 0.1;
+            ctx.moveTo(arrowX, arrowY - arrowSize);
+            ctx.lineTo(arrowX - arrowSize/2, arrowY);
+            ctx.lineTo(arrowX - arrowSize/4, arrowY);
+            ctx.lineTo(arrowX - arrowSize/4, arrowY + arrowSize);
+            ctx.lineTo(arrowX + arrowSize/4, arrowY + arrowSize);
+            ctx.lineTo(arrowX + arrowSize/4, arrowY);
+            ctx.lineTo(arrowX + arrowSize/2, arrowY);
+            ctx.closePath();
+            ctx.fill();
+
+            // Add label
+            const label = document.createElement('p');
+            label.textContent = `${size}x${size} - Right-click to save as icon-${size}.png`;
+            label.style.textAlign = 'center';
+
+            container.appendChild(label);
+            container.appendChild(canvas);
+        }
+
+        // Auto-generate on load
+        window.onload = generateIcons;
+    </script>
+</body>
+</html>

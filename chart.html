@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2196F3">
+    <title>Chart - Trading Signals Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chart-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="menu-icon" id="menuBtn">☰</div>
+                <div class="symbol-name" id="currentSymbol">XAUUSD</div>
+            </div>
+            <div class="header-icons">
+                <button class="icon-btn" id="symbolBtn" title="Change Symbol">📊</button>
+                <button class="icon-btn" id="timeframeBtn" title="Change Timeframe">⏱️</button>
+                <button class="icon-btn" id="settingsNavBtn" title="Settings">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Price Bar -->
+        <div class="price-bar">
+            <div class="sell-box">
+                <div class="price-label">SELL</div>
+                <div class="price-value" id="sellPrice">4458.02</div>
+            </div>
+            
+            <div class="lot-selector">
+                <button class="lot-btn" id="lotUp">▲</button>
+                <div class="lot-value" id="lotValue">0.01</div>
+                <button class="lot-btn" id="lotDown">▼</button>
+            </div>
+            
+            <div class="buy-box">
+                <div class="price-label">BUY</div>
+                <div class="price-value" id="buyPrice">4458.43</div>
+            </div>
+        </div>
+
+        <!-- Symbol Info Bar -->
+        <div class="symbol-bar">
+            <div class="symbol-info">
+                <span class="symbol-name" id="symbolDisplay">GOLD • M15</span>
+            </div>
+            <div>
+                <span class="current-price" id="currentPrice">4458.02</span>
+                <span class="current-time" id="currentTime">11:26</span>
+            </div>
+        </div>
+
+        <!-- Chart Canvas -->
+        <div class="chart-wrapper">
+            <canvas id="tradingChart"></canvas>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="chart.html" class="nav-item active">
+                <div class="nav-icon">📈</div>
+                <div>Charts</div>
+            </a>
+            <a href="signals.html" class="nav-item">
+                <div class="nav-icon">⚡</div>
+                <div>Signals</div>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <div class="nav-icon">⚙️</div>
+                <div>Settings</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Symbol Selection Modal -->
+    <div id="symbolModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Select Symbol</h2>
+                <button class="close-btn" id="closeSymbolModal">✕</button>
+            </div>
+            <div class="symbol-list">
+                <div class="symbol-item" data-symbol="XAUUSD">XAUUSD (Gold)</div>
+                <div class="symbol-item" data-symbol="EURUSD">EURUSD</div>
+                <div class="symbol-item" data-symbol="GBPUSD">GBPUSD</div>
+                <div class="symbol-item" data-symbol="AUDUSD">AUDUSD</div>
+                <div class="symbol-item" data-symbol="AUDCAD">AUDCAD</div>
+                <div class="symbol-item" data-symbol="USDCAD">USDCAD</div>
+                <div class="symbol-item" data-symbol="USDJPY">USDJPY</div>
+                <div class="symbol-item" data-symbol="GBPJPY">GBPJPY</div>
+                <div class="symbol-item" data-symbol="CADJPY">CADJPY</div>
+                <div class="symbol-item" data-symbol="AUDJPY">AUDJPY</div>
+                <div class="symbol-item" data-symbol="BTCUSD">BTCUSD (Bitcoin)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeframe Selection Modal -->
+    <div id="timeframeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Select Timeframe</h2>
+                <button class="close-btn" id="closeTimeframeModal">✕</button>
+            </div>
+            <div class="timeframe-list">
+                <div class="timeframe-item" data-timeframe="M1">M1</div>
+                <div class="timeframe-item" data-timeframe="M5">M5</div>
+                <div class="timeframe-item active" data-timeframe="M15">M15</div>
+                <div class="timeframe-item" data-timeframe="M30">M30</div>
+                <div class="timeframe-item" data-timeframe="H1">H1</div>
+                <div class="timeframe-item" data-timeframe="H4">H4</div>
+                <div class="timeframe-item" data-timeframe="D1">D1</div>
+                <div class="timeframe-item" data-timeframe="W1">W1</div>
+                <div class="timeframe-item" data-timeframe="MN">MN</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Menu</h2>
+                <button class="close-btn" id="closeSideMenu">✕</button>
+            </div>
+            <div class="symbol-list">
+                <div class="symbol-item" onclick="location.href='chart.html'">📈 Charts</div>
+                <div class="symbol-item" onclick="location.href='signals.html'">⚡ Signals</div>
+                <div class="symbol-item" onclick="location.href='settings.html'">⚙️ Settings</div>
+                <div class="symbol-item" id="logoutBtn">🚪 Logout</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="chart.js"></script>
+    <script type="module" src="data.js"></script>
+    <script type="module" src="trendlines.js"></script>
+</body>
+</html>
